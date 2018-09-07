@@ -1,0 +1,9 @@
+{
+    "entryFile": "",
+    "outDir": "",
+    "outfile": "",
+    "domain": "localhost",
+    "port": 8080,
+    "viewEngine": "pug",
+    "viewDirectory": "{srcDir}/views"
+}
