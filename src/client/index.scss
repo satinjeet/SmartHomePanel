@@ -1,1 +1,5 @@
-@import "~materialize-css/sass/materialize.scss"
+@import "~materialize-css/sass/materialize.scss";
+
+body, .fullheight {
+    height: 100vh;
+}

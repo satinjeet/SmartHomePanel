@@ -1,4 +1,5 @@
 import {render, h} from 'preact';
+import { Container } from './playground/container';
 
 const root = document.querySelector('#root');
 while (root.firstChild) {
@@ -6,6 +7,6 @@ while (root.firstChild) {
 }
 
 render(
-    <div>Hello World!! now</div>,
+    <Container />,
     root
 )
