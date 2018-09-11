@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
 const priority = ['', 'dev', 'prod'];
-
 
 function confParser(configString) {
     [{
@@ -17,12 +15,18 @@ function confParser(configString) {
     return JSON.parse(configString);
 }
 
+let instance = undefined;
+
 class Config {
     constructor() {
+        if (instance) {
+            throw new Error("config object already exists. use Config.Instance to use the instance");
+            return;
+        }
+        
         this._configName = "DEFAULT";
-
         const configDir = path.resolve(__dirname, "../config");
-        const files = fs.readdirSync(configDir).map(file => {
+        fs.readdirSync(configDir).map(file => {
             const execResult = /\.config.?([a-z]*?)\.json/gi.exec(file);
             return [execResult[0], execResult[1]];
         }).sort((configFile1, configFile2) => {
@@ -42,5 +46,14 @@ class Config {
 
         return application;
     }
+
+    static get Instance() {
+        if (!instance) {
+            instance = new Config;
+        };
+        
+        return instance;
+    }
 }
+
 module.exports = Config;

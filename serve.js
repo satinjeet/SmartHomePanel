@@ -1,10 +1,9 @@
 const express = require('express');                   // express application framework
-const bodyParser = require('body-parser');              // Parses incoming data in request body.
-const bundler = require("./src/core/bundler");       // Compiles client side JS and CSS
+const bodyParser = require('body-parser');            // Parses incoming data in request body.
+const bundler = require("./src/core/bundler");        // Compiles client side JS and CSS
 const Config = require('./src/core/config');
 const Pages = require('./src/controllers/page');
-const config = new Config();
-const app = config.withExpress(express());
+const app = Config.Instance.withExpress(express());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,10 +14,10 @@ app.use('/public', express.static(__dirname + "/dist"));
 app.use("/", Pages);
 
 // Serve the application at the given port
-app.listen(config.port, "0.0.0.0", () => {
+app.listen(Config.Instance.port, "0.0.0.0", () => {
     // Success callback
-    bundler(config);
-    console.log(`Listening at http://${config.domain}:${config.port}/`);
+    bundler(Config.Instance);
+    console.log(`Listening at http://${Config.Instance.domain}:${Config.Instance.port}/`);
 });
 
 module.exports = app;

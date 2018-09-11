@@ -1,26 +1,11 @@
 const fs = require('fs');
 const Pages = require('express').Router()
 
-module.exports = Pages;
+const { getScriptsFromIndex } = require('../core/dist_reader');
 
 Pages.get("/", (req, res) => {
-    const publicContent = fs.readFileSync(__dirname + "/../../dist/index.html").toString();
-    const scriptRegex = new RegExp("\<script src=\"public\/(.*?.js){1}.*?\>$", "gmi");
-    const cssRegexp = new RegExp("<link.*?href=\"public\/(.*?.css){1}.+?>$", "gmi");
-
-    const scripts = [], stylesheets = [];
-    let scriptName, sheetName;
-    while (scriptName = scriptRegex.exec(publicContent)) {
-        scripts.push(scriptName[1]);
-        scriptRegex.lastIndex += 1;
-    }
-
-    while (sheetName = cssRegexp.exec(publicContent)) {
-        stylesheets.push(sheetName[1]);
-        cssRegexp.lastIndex += sheetName[0].length;
-    }
-
-    console.log(scripts, stylesheets);
-    
+    const {scripts, stylesheets} = getScriptsFromIndex();    
     res.render('home', { scripts, stylesheets});
 });
+
+module.exports = Pages;
