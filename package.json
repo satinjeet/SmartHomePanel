@@ -23,6 +23,7 @@
     "node-sass": "^4.9.3"
   },
   "nodemonConfig": {
-    "ignore": ["src/client/*", "dist/*"]
+    "ignore": ["src/client/*", "dist/*"],
+    "delay": "2500"
   }
 }

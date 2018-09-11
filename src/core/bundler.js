@@ -1,8 +1,4 @@
 const Bundler = require('parcel');
-const Path = require('path');
-
-// Entrypoint file location
-const file = Path.join(__dirname, '../views/index.html');
 
 async function runBundle(config/* : Config */) {
     // Initializes a bundler using the entrypoint location and options provided
