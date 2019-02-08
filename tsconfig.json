@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "sourceMap": true,
+        "jsx": "react",
+        "jsxFactory": "h",
+        "lib": [
+            "dom",
+            "es5",
+            "es2015",
+            "es2017"
+        ]
+    },
+    "include": [
+        "./src/client/**/*.tsx",
+        "./src/client/**/*.ts"
+    ]
+}

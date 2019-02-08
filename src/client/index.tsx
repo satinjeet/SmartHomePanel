@@ -1,4 +1,4 @@
-import {render, h} from 'preact';
+import { h, render } from 'preact';
 import { Container } from './playground/container';
 
 const root = document.querySelector('#root');

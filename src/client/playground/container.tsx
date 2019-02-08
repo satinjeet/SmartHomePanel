@@ -1,5 +1,6 @@
-import { Component, h} from 'preact';
-export class Container extends Component {
+import { Component, h } from 'preact';
+
+export class Container extends Component<any, any> {
     render() {
         return <div class="row">
             <div class="col s12 m6">
