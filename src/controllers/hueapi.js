@@ -74,13 +74,13 @@ HueAPI.post("/devices/:deviceId", (req, res) => {
         return;
     }
 
-    console.log(
-        "Bridge call: ",
-        `https://${currentIp}/api/${Config.Instance.hueUser}/lights/${req.params.deviceId}`
-    );
+    const url = `https://${currentIp}/api/${Config.Instance.hueUser}/lights/${req.params.deviceId}/state`
+
+    console.log(req, req.body);
+    console.log("Bridge call: ", url, { on: req.body.lampOn });
     request(
-        `https://${currentIp}/api/${Config.Instance.hueUser}/lights`,
-        { json: true, strictSSL: false },
+        url,
+        { json: true, strictSSL: false, method: "PUT" , body: { on: req.body.lampOn }},
         (err, response, body) => {
             if (err) {
                 res.status(400).send(new Response(err));

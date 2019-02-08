@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 
 interface ILight {
     key: number;
+    requestPending: boolean;
     state: {
         on: boolean,
         bri: number,
@@ -48,29 +49,35 @@ export class Devices extends Component<any, IDeviceState> {
     }
 
     render() {
-        return <div class="row">
+        return <div class="row devices">
             <div class="row">
             {
-                this.state.lights.map(light => {
+                this.state.lights.map((light, index) => {
                     const isOn = light.state.on;
-                    return <div class="col s12 m6">
-                        <div class="card">
-                            <div class={"card-image backdrop-grad" + (!isOn ? ' backdrop-grad--off': '')}>
-                                
-                                <span class="card-title">
-                                    <i class="material-icons medium">lightbulb_outline</i> { light.name }
-                                </span>
-                                <a 
-                                    class={"btn-floating halfway-fab waves-effect waves-light " + (isOn? 'teal': 'grey')}
-                                    onClick={this.turnLightOnAndOff.bind(this, light, !isOn)}
-                                >
-                                    {
-                                        isOn ?
-                                            <i class="material-icons">remove_circle</i>:
-                                            <i class="material-icons">wb_sunny</i>
-                                    }
-                                </a>
-                            </div>
+                    return <a href="#" onClick={this.turnLightOnAndOff.bind(this, light, index, !isOn)}>
+                        <div class="col s12 m6" key={`light-${index}`}>
+                            <div class="card">
+                                <div class={"card-image backdrop-grad" + (!isOn ? ' backdrop-grad--off': '')}>
+                                    
+                                    <span class="card-title">
+                                        <i class="material-icons medium">lightbulb_outline</i> { light.name }
+                                    </span>
+                                    <a 
+                                        class={"btn-floating halfway-fab waves-effect waves-light " + (isOn? 'teal': 'grey')}
+                                        onClick={this.turnLightOnAndOff.bind(this, light, index, !isOn)}
+                                    >
+                                        {
+                                            isOn ?
+                                                <i class="material-icons">remove_circle</i>:
+                                                <i class="material-icons">wb_sunny</i>
+                                        }
+                                    </a>
+                                </div>
+                                {
+                                    light.requestPending && <div class="progress">
+                                        <div class="indeterminate teal"></div>
+                                    </div>
+                                }
                                 <div class="card-content">
                                     <p>
                                         { light.name } <span
@@ -90,6 +97,7 @@ export class Devices extends Component<any, IDeviceState> {
                                 </div>
                             </div>
                         </div>
+                    </a>
                 })
             }
             </div>
@@ -102,6 +110,7 @@ export class Devices extends Component<any, IDeviceState> {
                 const lightList = [];
                 for (let key in lights) {
                     lights[key].key = key;
+                    lights[key].requestPending = false;
                     lightList.push(lights[key]);
                 }
 
@@ -110,14 +119,22 @@ export class Devices extends Component<any, IDeviceState> {
         });
     }
 
-    private turnLightOnAndOff(light: ILight, turnOn: boolean = true) {
+    private turnLightOnAndOff(light: ILight, index: number, turnOn: boolean = true) {
         console.log("Request to ", light.name, turnOn);
-        fetch(
-            `/api/devices/${light.key}`,
-            {
-                method: "POST",
-                body: JSON.stringify({ lampOn: turnOn })
-            }
-        ).then(() => this.refreshDevices()).catch(() => this.refreshDevices())
+        const lights = this.state.lights;
+        lights[index].requestPending = true;
+
+        this.setState({ lights}, () => {
+            fetch(
+                `/api/devices/${light.key}`,
+                {
+                    method: "POST",
+                    body: JSON.stringify({ lampOn: turnOn }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            ).then(() => this.refreshDevices()).catch(() => this.refreshDevices())
+        });
     }
 }
