@@ -1,5 +1,5 @@
 import { h, render } from 'preact';
-import { Container } from './playground/container';
+import { Main } from './Routes/Main';
 
 const root = document.querySelector('#root');
 while (root.firstChild) {
@@ -7,6 +7,6 @@ while (root.firstChild) {
 }
 
 render(
-    <Container />,
+    <Main />,
     root
 )

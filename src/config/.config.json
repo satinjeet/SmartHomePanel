@@ -5,5 +5,7 @@
     "domain": "localhost",
     "port": 8080,
     "viewEngine": "pug",
-    "viewDirectory": "{srcDir}/views"
+    "viewDirectory": "{srcDir}/views",
+    "cache": "{rootDir}/cache",
+    "hueUser": "42iys6jU329yOT8Qgy2mu5Gd6N6H0zPtIFEEovK8"
 }

@@ -8,4 +8,9 @@ Pages.get("/", (req, res) => {
     res.render('home', { scripts, stylesheets});
 });
 
+Pages.get("/_/:anypageforfrontend", (req, res) => {
+    const { scripts, stylesheets } = getScriptsFromIndex();
+    res.render('home', { scripts, stylesheets });
+});
+
 module.exports = Pages;
