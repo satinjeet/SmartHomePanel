@@ -26,21 +26,21 @@ export class BridgeInfo extends Component<IBridgeInfoProps, IBridgeInfoState> {
     private el: HTMLAnchorElement;
 
     componentDidMount() {
-        clearInterval(this.interval);
+        // clearInterval(this.interval);
 
         this.fetchBridgeInfo();
-        this.interval = setInterval(this.fetchBridgeInfo, 10000);
+        // this.interval = setInterval(this.fetchBridgeInfo, 10000);
         M.Dropdown.init(this.el);
     }
 
     componentWillUnmount() {
-        clearInterval(this.interval);
+        // clearInterval(this.interval);
     }
 
     render() {
-        return <nav class="teal col s12">
+        return <nav class="teal col s12 main-nav">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">
+                <a href="#" class="custom-logo">
                     Bridge - { this.state.ip }
                 </a>
                 {/* <!-- Dropdown Trigger --> */}

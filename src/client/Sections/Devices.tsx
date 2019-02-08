@@ -54,13 +54,13 @@ export class Devices extends Component<any, IDeviceState> {
             {
                 this.state.lights.map((light, index) => {
                     const isOn = light.state.on;
-                    return <a href="#" onClick={this.turnLightOnAndOff.bind(this, light, index, !isOn)}>
-                        <div class="col s12 m6" key={`light-${index}`}>
+                    return <a class="clickable-area" href="#" onClick={this.turnLightOnAndOff.bind(this, light, index, !isOn)}>
+                        <div class="col s4 m6" key={`light-${index}`}>
                             <div class="card">
                                 <div class={"card-image backdrop-grad" + (!isOn ? ' backdrop-grad--off': '')}>
-                                    
+                                    <i class="material-icons medium white-text">lightbulb_outline</i> 
                                     <span class="card-title">
-                                        <i class="material-icons medium">lightbulb_outline</i> { light.name }
+                                        { light.name }
                                     </span>
                                     <a 
                                         class={"btn-floating halfway-fab waves-effect waves-light " + (isOn? 'teal': 'grey')}
@@ -78,7 +78,7 @@ export class Devices extends Component<any, IDeviceState> {
                                         <div class="indeterminate teal"></div>
                                     </div>
                                 }
-                                <div class="card-content">
+                                {/* <div class="card-content">
                                     <p>
                                         { light.name } <span
                                             class={
@@ -94,7 +94,7 @@ export class Devices extends Component<any, IDeviceState> {
                                             light.state.on && `is at ${ light.state.bri / 254 * 100}%`
                                         }
                                     </p>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </a>

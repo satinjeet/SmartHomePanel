@@ -29,6 +29,15 @@ export class Main extends Component<any, any> {
                     </Router>
                 </div>
             }
+            <a class="btn-floating btn-large waves-effect waves-light teal right" style={{
+                bottom: '5px',
+                position: 'absolute',
+                right: '5px'
+            }} onClick={() => {
+                document.querySelector('#root').requestFullscreen();
+            }}>
+                <i class="material-icons">fullscreen</i>  
+            </a>
         </div>
     }
 }
