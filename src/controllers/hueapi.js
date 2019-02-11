@@ -76,16 +76,17 @@ HueAPI.post("/devices/:deviceId", (req, res) => {
 
     const url = `https://${currentIp}/api/${Config.Instance.hueUser}/lights/${req.params.deviceId}/state`
 
-    console.log(req, req.body);
-    console.log("Bridge call: ", url, { on: req.body.lampOn });
+    console.log("Bridge call: ", url, { on: req.body.lampOn, bri: Math.floor(req.body.bri) });
     request(
         url,
-        { json: true, strictSSL: false, method: "PUT" , body: { on: req.body.lampOn }},
+        { json: true, strictSSL: false, method: "PUT" , body: { on: req.body.lampOn, bri: Math.floor(req.body.bri) }},
         (err, response, body) => {
             if (err) {
                 res.status(400).send(new Response(err));
             }
 
+            // Ask all devices to refresh their values.
+            require('./sockets/socketapi').Instance.connection.emit("event.devices.list");
             res.send(body);
         }
     );

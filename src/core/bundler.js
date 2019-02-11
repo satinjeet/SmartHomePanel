@@ -6,7 +6,7 @@ async function runBundle(config/* : Config */) {
         outDir: config.outDir, // The out directory to put the build files in, defaults to dist
         outFile: config.outfile, // The name of the outputFile
         publicUrl: './public', // The url to server on, defaults to dist
-        watch: true, // whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
+        watch: process.env.HUE_ENV !== 'prod', // whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
         cache: false, // Enabled or disables caching, defaults to true
         cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
         contentHash: false, // Disable content hash from being included on the filename

@@ -3,8 +3,8 @@ const fs = require("fs");
 
 module.exports = {
     getScriptsFromIndex(path) {
-
-        const publicContent = fs.readFileSync(Config.Instance.outDir + "/index.html").toString();
+        const fileName = process.env.HUE_ENV === 'prod' ? 'index.prod.html': 'index.html';
+        const publicContent = fs.readFileSync(Config.Instance.outDir + "/" + fileName).toString();
         const scriptRegex = new RegExp("\<script src=\"public\/(.*?.js){1}.*?\>$", "gmi");
         const cssRegexp = new RegExp("<link.*?href=\"public\/(.*?.css){1}.+?>$", "gmi");
 

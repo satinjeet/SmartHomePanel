@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const priority = ['', 'dev', 'prod'];
+const env = process.env.HUE_ENV || 'dev';
 
 function confParser(configString) {
     [{
@@ -26,18 +27,20 @@ class Config {
         
         this._configName = "DEFAULT";
         const configDir = path.resolve(__dirname, "../config");
-        fs.readdirSync(configDir).map(file => {
-            const execResult = /\.config.?([a-z]*?)\.json/gi.exec(file);
-            return [execResult[0], execResult[1]];
-        }).sort((configFile1, configFile2) => {
-            const cf1I = priority.indexOf(configFile1[1]);
-            const cf2I = priority.indexOf(configFile2[1]);
-            return cf1I < cf2I ? -1 : 1;
-        }).map(configFile => {
-            const fileContent = fs.readFileSync(path.resolve(configDir, configFile[0])).toString();
-            Object.assign(this, confParser(fileContent));
-            this._configName = configFile[1].toUpperCase();
-        });
+        
+        // fs.readdirSync(configDir).map(file => {
+        //     const [fullMatch, environment] = (/\.config.?([a-z]*?)\.json/gi.exec(file)) || [];
+        //     return environment;
+        // }).sort((configFile1, configFile2) => {
+        //     const cf1I = priority.indexOf(configFile1);
+        //     const cf2I = priority.indexOf(configFile2);
+        //     return cf1I < cf2I ? -1 : 1;
+        // }).map(configFile => {
+        const fileContent = fs.readFileSync(path.resolve(configDir, `.config${env ? ('.' + env) : ''}.json`)).toString();
+        console.log(fileContent, `.config${env ? ('.' + env) : ''}.json`, env);
+        Object.assign(this, confParser(fileContent));
+        this._configName = env.toUpperCase();
+        // });
     }
 
     withExpress(application/* : Express.App */)/* : Express.App */ {

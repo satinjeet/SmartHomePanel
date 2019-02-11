@@ -31,4 +31,14 @@
     a.clickable-area {
         color: unset;
     }
+
+    .card-content {
+        .col.s1.m1 {
+            padding: 0px;
+
+            a.btn {
+                padding: 0px 10px;
+            }
+        }
+    }
 }

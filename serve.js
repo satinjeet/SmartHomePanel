@@ -4,9 +4,13 @@ const bundler = require("./src/core/bundler");        // Compiles client side JS
 const Config = require('./src/core/config');
 const Pages = require('./src/controllers/page');
 const HueAPI = require('./src/controllers/hueapi');
+const SocketApi = require('./src/controllers/sockets/socketapi');
 
-const app = express()
+const app = express();
+var http = require("http").Server(app);
+var io = require("socket.io")(http);
 
+new SocketApi(io);
 // app.set("views", __dirname + "/views");
 
 // Always set body parser before anything
@@ -20,7 +24,7 @@ app.use("/api", HueAPI);
 app.use("/public", express.static(__dirname + "/dist"));
 
 // Serve the application at the given port
-app.listen(Config.Instance.port, "0.0.0.0", () => {
+http.listen(Config.Instance.port, '0.0.0.0', () => {
     // Success callback
     bundler(Config.Instance);
     console.log(`Listening at http://${Config.Instance.domain}:${Config.Instance.port}/`);

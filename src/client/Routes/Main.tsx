@@ -3,6 +3,8 @@ import Router from 'preact-router';
 import { Container } from '../playground/container';
 import { BridgeInfo } from '../Sections/BridgeInfo';
 import { Devices } from '../Sections/Devices';
+import { RTConnection } from '../Connection/realtime';
+import { WeatherWidget } from '../Sections/WeatherWidget';
 
 interface IMainState {
     bridgeFound: boolean;
@@ -13,6 +15,10 @@ export class Main extends Component<any, any> {
         bridgeFound: false
     }
 
+    componentDidMount() {
+        RTConnection
+    }
+
     render() {
         return <div class="row" >
             <div class="row">
@@ -20,6 +26,7 @@ export class Main extends Component<any, any> {
                     this.setState({ bridgeFound: found });
                 }}/>
             </div>
+            <WeatherWidget />
             {
                 this.state.bridgeFound && <div class="row">
                     <Router>

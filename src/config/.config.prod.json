@@ -1,8 +1,8 @@
 {
-    "entryFile": "{srcDir}/index.html",
-    "outDir": "{rootDir}/dist",
-    "outfile": "{rootDir}/index.html",
-    "domain": "localhost",
+    "entryFile": "{srcDir}/index.prod.html",
+    "outDir": "{rootDir}/prod",
+    "outfile": "{rootDir}/index.prod.html",
+    "domain": "0.0.0.0",
     "port": 8080,
     "viewEngine": "pug",
     "viewDirectory": "{srcDir}/views",
