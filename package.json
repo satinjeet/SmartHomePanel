@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --recursive \"./test/**/*.js\"",
     "start": "nodemon serve.js",
-    "start:prod": "HUE_ENV=prod node serve.js"
+    "start:prod": "HUE_ENV=prod node serve.js",
+    "build:prod": "HUE_ENV=prod node build.js"
   },
   "author": "",
   "license": "ISC",
