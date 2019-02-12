@@ -353,8 +353,8 @@ export class CircleSlider extends React.Component<IProps, IState> {
                     />
                     {showTooltip && (
                         <text
-                            x={size! / 2}
-                            y={size! / 2 + tooltipSize! / 3}
+                            x={x - tooltipSize / 2}
+                            y={y + tooltipSize / 5}
                             textAnchor={"middle"}
                             fontSize={tooltipSize!}
                             fontFamily="Arial"
