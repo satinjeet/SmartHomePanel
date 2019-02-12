@@ -211,8 +211,8 @@ export class CircleSlider extends React.Component<IProps, IState> {
         if (!this.props.disabled) {
             event.preventDefault();
             window.addEventListener("mousemove", this.handleMouseMove);
-            window.addEventListener("mouseup", this.handleMouseUp);
         }
+        window.addEventListener("mouseup", this.handleMouseUp);
     };
     public handleTouchMove: any = (event: React.TouchEvent<SVGSVGElement>): void => {
         event.preventDefault();
@@ -235,8 +235,8 @@ export class CircleSlider extends React.Component<IProps, IState> {
         if (!this.props.disabled) {
             this.disableScroll = true;
             window.addEventListener("touchmove", this.handleTouchMove, { passive: false });
-            window.addEventListener("touchend", this.handleTouchUp);
         }
+        window.addEventListener("touchend", this.handleTouchUp);
     };
 
     public render() {

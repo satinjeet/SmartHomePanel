@@ -6,4 +6,14 @@
         font-size: 2.1rem;
         padding: 0;
     }
+
+    .dropdown-content {
+        li {
+            min-height: unset;
+            a {
+                font-size: 10px;
+                padding: 3px 16px;
+            }
+        }
+    }
 }

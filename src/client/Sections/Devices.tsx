@@ -95,6 +95,7 @@ export class Devices extends Component<any, IDeviceState> {
                                         onClick={this.turnLightOnAndOff.bind(this, light, index, !isOn)}
                                         showTooltip={true}
                                         showPercentage={true}
+                                        disabled={!isOn}
                                     />
                                 </div>
                             </div>
