@@ -11,7 +11,6 @@ class SocketApi {
     }
 
     connect() {
-        console.log('Hello')
         this.connection.on('connection', socket => {
             this.sockets.push(socket);
             

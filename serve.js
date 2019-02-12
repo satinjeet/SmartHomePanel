@@ -21,12 +21,14 @@ Config.Instance.withExpress(app);
 
 app.use("/", Pages);
 app.use("/api", HueAPI);
-app.use("/public", express.static(__dirname + "/dist"));
+app.use("/public", express.static(Config.Instance.outDir));
 
 // Serve the application at the given port
 http.listen(Config.Instance.port, '0.0.0.0', () => {
     // Success callback
-    bundler(Config.Instance);
+    if (process.env.HUE_ENV !== 'prod') {
+        bundler(Config.Instance);
+    }
     console.log(`Listening at http://${Config.Instance.domain}:${Config.Instance.port}/`);
 });
 

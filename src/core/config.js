@@ -37,7 +37,6 @@ class Config {
         //     return cf1I < cf2I ? -1 : 1;
         // }).map(configFile => {
         const fileContent = fs.readFileSync(path.resolve(configDir, `.config${env ? ('.' + env) : ''}.json`)).toString();
-        console.log(fileContent, `.config${env ? ('.' + env) : ''}.json`, env);
         Object.assign(this, confParser(fileContent));
         this._configName = env.toUpperCase();
         // });

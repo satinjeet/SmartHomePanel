@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive \"./test/**/*.js\"",
-    "start": "nodemon serve.js",
-    "start:prod": "HUE_ENV=prod node serve.js",
-    "build:prod": "HUE_ENV=prod node build.js"
+    "start": "nodemon --verbose serve.js",
+    "start:prod": "HUE_ENV=prod node build.js && HUE_ENV=prod node serve.js"
   },
   "author": "",
   "license": "ISC",
@@ -37,7 +36,10 @@
   "nodemonConfig": {
     "ignore": [
       "src/client/*",
-      "dist/*"
+      "dist/*",
+      "prod/*",
+      "cache/*",
+      ".vscode/*"
     ],
     "delay": "2500"
   }
