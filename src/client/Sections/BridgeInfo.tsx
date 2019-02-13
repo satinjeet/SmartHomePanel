@@ -38,7 +38,7 @@ export class BridgeInfo extends Component<IBridgeInfoProps, IBridgeInfoState> {
     }
 
     render() {
-        return <nav class="teal col s12 main-nav">
+        return <nav class="blue darken-4 col s12 main-nav">
             <div class="nav-wrapper">
                 <a href="#" class="custom-logo">
                     Bridge - { this.state.ip }

@@ -93,9 +93,13 @@ export class Devices extends Component<any, IDeviceState> {
                                         }}
                                         isOn={isOn}
                                         onClick={this.turnLightOnAndOff.bind(this, light, index, !isOn)}
-                                        showTooltip={true}
                                         showPercentage={true}
                                         disabled={!isOn}
+                                        progressColor="#1565c0"
+                                        progressWidth={10}
+                                        knobRadius={12}
+                                        knobColor='#eceff1'
+                                        knobStroke='#455a64'
                                     />
                                 </div>
                             </div>

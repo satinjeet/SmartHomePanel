@@ -18,6 +18,7 @@ interface IProps {
     gradientColorFrom?: string;
     gradientColorTo?: string;
     knobColor?: string;
+    knobStroke?: string;
     disabled?: boolean;
     shadow?: boolean;
     showTooltip?: boolean;
@@ -50,6 +51,7 @@ export class CircleSlider extends React.Component<IProps, IState> {
         value: 0,
         progressColor: "#007aff",
         knobColor: "#fff",
+        knobStroke: "#fff",
         circleWidth: 5,
         progressWidth: 20,
         knobRadius: 20,
@@ -252,6 +254,7 @@ export class CircleSlider extends React.Component<IProps, IState> {
             circleWidth,
             progressWidth,
             knobRadius,
+            knobStroke,
             showTooltip,
             showPercentage,
             tooltipSize,
@@ -317,16 +320,23 @@ export class CircleSlider extends React.Component<IProps, IState> {
                         </defs>
                     )}
                     <path
+                        id="progress"
                         style={{
                             strokeLinecap: "round",
                             strokeWidth: progressWidth!,
                             stroke: isAllGradientColorsAvailable
                                 ? "url(#gradient)"
                                 : progressColor,
-                            fill: "none",
+                            fill: "none"
                         }}
+                        fill={
+                            isAllGradientColorsAvailable
+                                ? "url(#gradient)":
+                                "none"
+                        }
                         d={this.getPath()}
                     />
+
                     {shadow && (
                         <filter id="dropShadow" filterUnits="userSpaceOnUse">
                             <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
@@ -344,7 +354,8 @@ export class CircleSlider extends React.Component<IProps, IState> {
                         style={{
                             fill: knobColor,
                             cursor: disabled ? "not-allowed" : "pointer",
-                            touchAction: 'none'
+                            touchAction: 'none',
+                            stroke: knobStroke
                         }}
                         filter={shadow ? "url(#dropShadow)" : "none"}
                         r={knobRadius!}
