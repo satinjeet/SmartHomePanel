@@ -3,6 +3,8 @@ const path = require('path');
 const priority = ['', 'dev', 'prod'];
 const env = process.env.HUE_ENV || 'dev';
 
+console.log('Environment => ', env);
+
 function confParser(configString) {
     [{
         path: path.resolve(__dirname, "../"),
