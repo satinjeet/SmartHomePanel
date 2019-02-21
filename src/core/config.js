@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const priority = ['', 'dev', 'prod'];
 const env = process.env.HUE_ENV || 'dev';
+const os = require('os');
 
 console.log('Environment => ', env);
 
@@ -13,8 +14,15 @@ function confParser(configString) {
         path: path.resolve(__dirname, "../../"),
         var: /\{rootDir\}/g
     }].forEach(variables => {
-        configString = configString.replace(variables.var, variables.path);
+        configString = configString.replace(variables.var, variables.path)
     });
+
+    if (os.platform() === 'win32') {
+        configString = configString.replace(/\//gmi, '\\').replace(/\\/gmi, '\\\\');
+    }
+
+    console.log(configString);
+
     return JSON.parse(configString);
 }
 
