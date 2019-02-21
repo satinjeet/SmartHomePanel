@@ -6,6 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const Config = require("../core/config");
 const moment = require("moment");
+const DB = require('../core/database');
 
 // TODO with DB
 
@@ -59,13 +60,34 @@ HueAPI.get("/devices", (req, res) => {
     }
 
     console.log("Bridge call: ", `https://${currentIp}/api/${Config.Instance.hueUser}/lights`);
-    request(`https://${currentIp}/api/${Config.Instance.hueUser}/lights`, { json: true, strictSSL: false }, (err, response, body) => {
-        if (err) {
-            res.status(400).send(new Response(err));
-        }
+    request(
+        `https://${currentIp}/api/${Config.Instance.hueUser}/lights`,
+        { json: true, strictSSL: false },
+        (err, response, body) => {
+            if (err) {
+                res.status(400).send(new Response(err));
+            }
 
-        res.send(body);
-    })
+            const lights = [];
+            const promise = Object
+                .keys(body)
+                .map(key => Object.assign({}, body[key], {
+                    'key': key,
+                    '_id': key,
+                    'requestPending': false,
+                })
+            );
+
+            res.send(body);
+
+            // Promise.all(promise).then(() => {
+            //     res.send(body);
+            // }).catch((err) => {
+            //     console.log('Error', err);
+            //     res.status(400).send(new Response(err)); 
+            // });
+        }
+    );
 });
 
 HueAPI.post("/devices/:deviceId", (req, res) => {

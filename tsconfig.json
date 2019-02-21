@@ -16,7 +16,8 @@
         "typeRoots": [
             "./node_modules/@types",
             "./src/client/types"
-        ]
+        ],
+        "allowSyntheticDefaultImports": true
     },
     "include": [
         "./src/client/**/*.tsx",

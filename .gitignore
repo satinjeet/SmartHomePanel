@@ -2,3 +2,9 @@ node_modules/
 dist/
 cache/
 prod/
+_replicator/
+_users/
+config.json
+devices/
+log.txt
+pouch__all_dbs__/

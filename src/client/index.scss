@@ -4,6 +4,6 @@ body, .fullheight {
     height: 100vh;
 }
 
-@import './Sections/BridgeInfo.scss';
-@import './Sections/Devices.scss';
-@import './Sections/internal/src/index.scss';
+@import './Components/BridgeInfo/BridgeInfo.scss';
+@import './Components/Devices/Devices.scss';
+@import './Components/CircleSlider/index.scss';

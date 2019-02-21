@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
-import { RTConnection } from '../Connection/realtime';
-import { CircleSlider } from "./internal/src/index";
+import { RTConnection } from '../../Connection/realtime';
+import { CircleSlider } from "../CircleSlider/index";
 
 const colorShades = [
     'lighten-5 black-text',
@@ -70,16 +70,18 @@ export class Devices extends Component<any, IDeviceState> {
             <div class="row">
             {
                 this.state.lights.map((light, index) => {
+                    const isPoweredOn = light.state.reachable;
                     const isOn = light.state.on;
+                    
                     return <a class="clickable-area" href="#">
-                        <div class="col s3 m3" key={`light-${index}`}>
+                        <div class="col s4 m4 l3" key={`light-${index}`}>
                             <div class="card">
                                 {
                                     light.requestPending && <div class="progress">
                                         <div class="indeterminate teal"></div>
                                     </div>
                                 }
-                                <div class="card-content row" style={
+                                <div class="card-content row center-align" style={
                                     { filter: isOn? 'none': 'grayscale(100%)' }
                                 }>
                                     <span class="card-title">
@@ -100,6 +102,7 @@ export class Devices extends Component<any, IDeviceState> {
                                         knobRadius={12}
                                         knobColor='#eceff1'
                                         knobStroke='#455a64'
+                                        size={150}
                                     />
                                 </div>
                             </div>

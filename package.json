@@ -14,20 +14,24 @@
   "dependencies": {
     "@types/d3": "^5.7.0",
     "@types/moment": "^2.13.0",
+    "@types/pouchdb": "^6.3.3",
     "@types/socket.io-client": "^1.4.32",
     "body-parser": "^1.18.3",
     "d3": "^5.9.1",
     "express": "^4.16.3",
+    "googleapis": "^27.0.0",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.24.0",
     "parcel": "^1.9.7",
+    "pouchdb": "^7.0.0",
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4",
     "preact-router": "^2.6.1",
     "pug": "^2.0.3",
     "react-circle-slider": "^1.6.1",
     "request": "^2.88.0",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
@@ -40,7 +44,8 @@
       "dist/*",
       "prod/*",
       "cache/*",
-      ".vscode/*"
+      ".vscode/*",
+      "log.txt"
     ],
     "delay": "2500"
   }

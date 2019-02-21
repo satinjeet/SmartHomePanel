@@ -2,7 +2,6 @@ import { h, Component } from 'preact';
 import moment, { Moment } from 'moment';
 import * as M from 'materialize-css/dist/js/materialize';
 
-
 interface IBridgeInfoState {
     ip: string;
     previousList: {

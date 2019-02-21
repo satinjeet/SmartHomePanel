@@ -8,6 +8,8 @@ html(lang="en")
         link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
         each styleSheet in stylesheets
             link(rel="stylesheet", href="/public/" + styleSheet, type="text/css")
+        script.
+            var debugThis = #{devMode};
     body
         div#root
         each script in scripts

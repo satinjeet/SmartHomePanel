@@ -1,10 +1,10 @@
 import { h, Component } from 'preact';
 import Router from 'preact-router';
 import { Container } from '../playground/container';
-import { BridgeInfo } from '../Sections/BridgeInfo';
-import { Devices } from '../Sections/Devices';
+import { BridgeInfo } from '../Components/BridgeInfo/BridgeInfo';
+import { Devices } from '../Components/Devices/Devices';
 import { RTConnection } from '../Connection/realtime';
-import { WeatherWidget } from '../Sections/WeatherWidget';
+import { WeatherWidget } from '../Components/WeatherWidget/WeatherWidget';
 
 interface IMainState {
     bridgeFound: boolean;
@@ -20,7 +20,7 @@ export class Main extends Component<any, any> {
     }
 
     render() {
-        return <div class="row" >
+        return <div class="row">
             <div class="row">
                 <BridgeInfo onBridgeFound={found => {
                     this.setState({ bridgeFound: found });
@@ -39,7 +39,7 @@ export class Main extends Component<any, any> {
             <a class="btn-floating btn-large waves-effect waves-light teal right" style={{
                 bottom: '5px',
                 position: 'absolute',
-                right: '5px'
+                left: '5px'
             }} onClick={() => {
                 document.querySelector('#root').requestFullscreen();
             }}>
