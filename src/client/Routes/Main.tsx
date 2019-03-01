@@ -5,9 +5,21 @@ import { BridgeInfo } from '../Components/BridgeInfo/BridgeInfo';
 import { Devices } from '../Components/Devices/Devices';
 import { RTConnection } from '../Connection/realtime';
 import { WeatherWidget } from '../Components/WeatherWidget/WeatherWidget';
+import { Time } from '../Components/Time/Time';
+// import { FaceDetector } from '../Components/FaceDetector/FaceDetector';
 
 interface IMainState {
     bridgeFound: boolean;
+}
+
+export class IndividualComponentRouter extends Component<any, any> {
+    render() {
+        return [
+            <Devices path="/devices" />,
+            <WeatherWidget path="/weather" />,
+            <Time path="/time" />
+        ]
+    }
 }
 
 export class Main extends Component<any, any> {
@@ -26,13 +38,21 @@ export class Main extends Component<any, any> {
                     this.setState({ bridgeFound: found });
                 }}/>
             </div>
-            <WeatherWidget />
             {
                 this.state.bridgeFound && <div class="row">
                     <Router>
+                        <div class="row" path="/">
+                            <div class="row">
+                                <Time />
+                                <WeatherWidget />
+                            </div>
+                            <Devices />
+                            {/* <FaceDetector /> */}
+                        </div>
+                        <Devices path="/_/devices" />
+                        <WeatherWidget path="/_/weather" />
+                        <Time path="/_/time" />
                         <Container path="/_/about" />
-                        <Devices path="/" />
-                        <Devices path="/_" />
                     </Router>
                 </div>
             }

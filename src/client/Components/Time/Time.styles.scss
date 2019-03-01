@@ -1,0 +1,73 @@
+$size__sm: 1;
+$size__m: 2;
+$size__lg: 5;
+$size__xl: 8;
+
+@mixin setSize($size) {
+    width: 40px * $size;
+    height: 40px * $size;
+}
+
+@mixin fontSize($size) {
+    font-size: 25px * $size;
+}
+
+.viewer {
+    display: inline-block;
+    padding: 1px;
+    margin: 3px 5px;
+
+    .viewer-area {
+
+        @include setSize($size__sm);
+        border-radius: 10px;
+        border: 1px solid;
+        overflow: hidden;
+
+        .single-cell {
+            @include setSize($size__sm);
+            @include fontSize($size__sm);
+            margin-left: -1px;
+            position: absolute;
+        }
+
+        &.med {
+            @include setSize($size__m);
+            .single-cell {
+                @include setSize($size__m);
+                @include fontSize($size__m);
+            }
+        }
+
+        &.lg {
+            @include setSize($size__lg);
+            .single-cell {
+                @include setSize($size__lg);
+                @include fontSize($size__lg);
+            }
+        }
+
+        &.xlg {
+            @include setSize($size__xl);
+            .single-cell {
+                @include setSize($size__xl);
+                @include fontSize($size__xl);
+            }
+        }
+    }
+}
+
+// Scale transition
+.fade-transition {
+  &.fade-out {
+    opacity: 0;
+    transition: opacity 1.2s !important;
+  }
+
+  &.fade-in {
+    opacity: 1;
+    transition: opacity 1s !important;
+  }
+
+//   transition: opacity .7s cubic-bezier(0.53, 0.01, 0.36, 1.63) !important;
+}

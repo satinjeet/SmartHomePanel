@@ -37,9 +37,10 @@ export class BridgeInfo extends Component<IBridgeInfoProps, IBridgeInfoState> {
     }
 
     render() {
+        const { debugThis } = window as any;
         return <nav class="blue darken-4 col s12 main-nav">
             <div class="nav-wrapper">
-                <a href="#" class="custom-logo">
+                <a href="/" class="custom-logo">
                     Bridge - { this.state.ip }
                 </a>
                 {/* <!-- Dropdown Trigger --> */}
@@ -54,7 +55,7 @@ export class BridgeInfo extends Component<IBridgeInfoProps, IBridgeInfoState> {
                             this.state.previousList.map((pli, index) =>
                                 <li>
                                     <a href="#" key={`pli-${index}`}>
-                                        { pli.ip } - {pli.date.format('YYYY-MM-DD')} at { pli.date.format('HH:mm P') }
+                                        { pli.ip } - {pli.date.format('YYYY-MM-DD')} at { pli.date.format('HH:mm A') }
                                     </a>
                                 </li>
                             )
