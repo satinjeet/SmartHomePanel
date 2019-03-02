@@ -24,7 +24,7 @@ export class WeatherWidget extends Component {
     }
 
     render() {
-        return <div class={`row col sm12 m12 l5`} key={this.state.refreshTimer.getTime()}>
+        return <div class={`row col s12 m12 l5`} key={this.state.refreshTimer.getTime()}>
             <a
                 class="weatherwidget-io col s12 m12"
                 href="https://forecast7.com/en/43d62n79d51/etobicoke/"
