@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const Config = require("../core/config");
 const moment = require("moment");
-const DB = require('../core/database');
+// const DB = require('../core/database');
 
 // TODO with DB
 
