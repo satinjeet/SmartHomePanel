@@ -6,7 +6,7 @@ const Pages = require('./src/controllers/page');
 const HueAPI = require('./src/controllers/hueapi');
 const SocketApi = require('./src/controllers/sockets/socketapi');
 const CalenderAPI = require('./src/controllers/google/calendar');
-const DB = require('./src/core/database');
+// const DB = require('./src/core/database');
 
 const app = express();
 var http = require("http").Server(app);

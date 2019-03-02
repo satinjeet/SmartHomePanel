@@ -1,5 +1,6 @@
 $size__sm: 1;
 $size__m: 2;
+$size__ml: 4;
 $size__lg: 5;
 $size__xl: 8;
 
@@ -8,8 +9,17 @@ $size__xl: 8;
     height: 40px * $size;
 }
 
+@mixin setSizeImp($size) {
+    width: 40px * $size !important;
+    height: 40px * $size !important;
+}
+
 @mixin fontSize($size) {
     font-size: 25px * $size;
+}
+
+@mixin fontSizeImp($size) {
+    font-size: 25px * $size !important;
 }
 
 .viewer {
@@ -53,6 +63,26 @@ $size__xl: 8;
                 @include setSize($size__xl);
                 @include fontSize($size__xl);
             }
+        }
+    }
+}
+
+.s12, .m12 {
+    .viewer-area {
+        @include setSizeImp($size__ml);
+        .single-cell {
+            @include setSizeImp($size__ml);
+            @include fontSizeImp($size__ml);
+        }
+    }
+}
+
+.l7 {
+    .viewer-area {
+        @include setSizeImp($size__lg);
+        .single-cell {
+            @include setSizeImp($size__lg);
+            @include fontSizeImp($size__lg);
         }
     }
 }

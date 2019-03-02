@@ -1,5 +1,5 @@
 import { h, Component } from "preact";
-import 'tracking'
+// import 'tracking'
 
 export class FaceDetector extends Component {
     private video: HTMLVideoElement;
