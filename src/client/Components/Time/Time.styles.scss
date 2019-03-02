@@ -49,6 +49,14 @@ $size__xl: 8;
             }
         }
 
+        &.mlg {
+            @include setSize($size__ml);
+            .single-cell {
+                @include setSize($size__ml);
+                @include fontSize($size__ml);
+            }
+        }
+
         &.lg {
             @include setSize($size__lg);
             .single-cell {
@@ -67,25 +75,25 @@ $size__xl: 8;
     }
 }
 
-.s12, .m12 {
-    .viewer-area {
-        @include setSizeImp($size__ml);
-        .single-cell {
-            @include setSizeImp($size__ml);
-            @include fontSizeImp($size__ml);
-        }
-    }
-}
+// .s12, .m12 {
+//     .viewer-area {
+//         @include setSizeImp($size__ml);
+//         .single-cell {
+//             @include setSizeImp($size__ml);
+//             @include fontSizeImp($size__ml);
+//         }
+//     }
+// }
 
-.l7 {
-    .viewer-area {
-        @include setSizeImp($size__lg);
-        .single-cell {
-            @include setSizeImp($size__lg);
-            @include fontSizeImp($size__lg);
-        }
-    }
-}
+// .l7 {
+//     .viewer-area {
+//         @include setSizeImp($size__lg);
+//         .single-cell {
+//             @include setSizeImp($size__lg);
+//             @include fontSizeImp($size__lg);
+//         }
+//     }
+// }
 
 // Scale transition
 .fade-transition {

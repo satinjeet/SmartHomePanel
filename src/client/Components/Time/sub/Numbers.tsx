@@ -5,7 +5,7 @@ interface INumberChartProps {
     rangeTo: number;
     val: Date;
     role: 'none' | 'sec' | 'min' | 'hour';
-    size?: 'sm' | 'med' | 'lg' | 'xlg';
+    size?: 'sm' | 'med' | 'mlg' | 'lg' | 'xlg';
 }
 
 /**
