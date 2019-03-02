@@ -73,7 +73,7 @@ export class Devices extends Component<any, IDeviceState> {
                     const isPoweredOn = light.state.reachable;
                     const isOn = light.state.on;
                     
-                    return <a class="clickable-area" href="#">
+                    return <a class="clickable-area">
                         <div class="col s4 m4 l3" key={`light-${index}`}>
                             <div class="card">
                                 {
